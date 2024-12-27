@@ -7,7 +7,7 @@ install_gitlab("medbio/disgenet2r")
 
 # Obtaining the API key
 library(disgenet2r)
-api_key <- "b23f2ce1-029b-43de-8050-0df6b1fa14a4"
+api_key <- "<insert API>"
 Sys.setenv(DISGENET_API_KEY= api_key)
 
 
