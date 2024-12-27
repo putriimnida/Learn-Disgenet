@@ -86,13 +86,21 @@ head(disgenet_data$diseaseUMLSCUI)
 # "C0023467" "C0023467" "C0023467" "C0023467" "C0023467" "C0023467"
 # -------------- #
 
-# Query genes associated with a disease using its UMLS ID
+# Query Disease to Gene Associations
 res <- disease2gene(
-  disease = "C0023467",
-  database = "ALL",
-  score = c(0, 1)  # Include all scores
+  disease = "UMLS_C0023467",  # Acute Myeloid Leukemia 
+  database = "CURATED",      # Search curated databases
+  score = c(0, 1)        # Include scores
 )
 
+# Check Results
+if (length(res) > 0) {
+  head(res)  
+} else {
+  print("No results found.")
+}
 
+# Save Results
+write.table(res, "disease_to_gene_results.tsv", sep = "\t", row.names = FALSE)
 
 
