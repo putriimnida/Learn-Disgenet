@@ -3,12 +3,12 @@
 
 # Installation
 library(devtools)
-install_gitlab("medbio/disgenet2r")
+#install_gitlab("medbio/disgenet2r")
 
 # Obtaining the API key
 library(disgenet2r)
-#api_key <- "<insert API>"
-#Sys.setenv(DISGENET_API_KEY= api_key)
+api_key <- "xxxxxx"
+Sys.setenv(DISGENET_API_KEY= api_key)
 
 
 # ---------------------------------- #
@@ -17,7 +17,7 @@ library(disgenet2r)
 #library(jsonlite)
 
 # Provide your API key 
-#api_key <- "Yb23f2ce1-029b-43de-8050-0df6b1fa14a4"
+#api_key <- "xxxxxxx"
 
 # Specify the response format: one of 'application/json', 'application/xml', 'application/csv' 
 #resp_format <- "application/json"
@@ -78,7 +78,7 @@ head(disgenet_data$Disease)
 
 
 library(disgenet2r)
-api_key <- "b23f2ce1-029b-43de-8050-0df6b1fa14a4"
+api_key <- "xxxxxxxx"
 Sys.setenv(DISGENET_API_KEY= api_key)
 
 head(disgenet_data$diseaseUMLSCUI)
@@ -141,13 +141,22 @@ top_genes <- aml_data %>%
   arrange(desc(association_count))
 
 
-# Gene-Disease association query from Disgenet
 # View the top 10 genes
 head(top_genes, 10)
+
+
+# Gene-Disease association query from Disgenet
+# Query: searching by gene
 results <- gene2disease( gene = "FLT3",
                          vocabulary = "HGNC",
                          database = "ALL",
                          score =c(0.3,1))
 results
 
-# CONCLUSION: We cannot run the queries without API
+# Query:searching by disease
+results <- disease2gene( disease  = "UMLS_C00234671",
+                         database = "CURATED",
+                         score    = c( 0.3,1 ) )
+results
+
+# CONCLUSION: We can neither use the disgenet2r R package nor run the queries without API or license
